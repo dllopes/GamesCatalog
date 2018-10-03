@@ -10,7 +10,7 @@ import UIKit
 
 class GameListViewController: UITableViewController {
 
-    let itemArray = ["Game 1", "Game 2", "Game 3", "Game 4", "Game 5"]
+    var itemArray = ["Game 1", "Game 2", "Game 3", "Game 4", "Game 5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +32,59 @@ class GameListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(itemArray[indexPath.row])
         
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        var titleField = UITextField()
+        var yearField = UITextField()
+        var consoleField = UITextField()
+        var completedField = UITextField()
+        var dateOfCompletionField = UITextField()
+        
+        let alert = UIAlertController(title: "Add new Game", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            self.itemArray.append(titleField.text!)
+            self.tableView.reloadData()
+            print(titleField.text)
+            print(yearField.text)
+            print(consoleField.text)
+            print(completedField.text)
+            print(dateOfCompletionField.text)
+        }
+        
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Title"
+            titleField = alertTextField
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Year"
+            yearField = alertTextField
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Console"
+            consoleField = alertTextField
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Completed"
+            completedField = alertTextField
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Date of Completion"
+            dateOfCompletionField = alertTextField
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
