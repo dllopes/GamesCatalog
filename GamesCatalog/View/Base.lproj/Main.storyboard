@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--GameList-->
+        <!--GamesCatalog-->
         <scene sceneID="lln-xi-71c">
             <objects>
                 <tableViewController id="lc2-U4-i5X" customClass="GameListViewController" customModule="GamesCatalog" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,7 +31,14 @@
                             <outlet property="delegate" destination="lc2-U4-i5X" id="Gku-Fx-8Pz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="GameList" id="mfG-bT-eyW"/>
+                    <navigationItem key="navigationItem" title="GamesCatalog" id="mfG-bT-eyW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7m4-RF-bHq">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="lc2-U4-i5X" id="FmW-ou-bzT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wmb-z1-wwA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -45,7 +52,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="afG-3O-pfW">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.98039215686274506" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
