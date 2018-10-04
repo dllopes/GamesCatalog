@@ -46,64 +46,6 @@ class GameListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
-    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        var titleField = UITextField()
-        var yearField = UITextField()
-        var consoleField = UITextField()
-        var completedField = UITextField()
-        var dateOfCompletionField = UITextField()
-        
-        let alert = UIAlertController(title: "Add new Game", message: "", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            
-            let newGame = Game(context: self.context)
-            newGame.title = titleField.text!
-            
-            self.itemArray.append(newGame)
-            
-            self.saveGames()
-            
-        }
-        
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Title"
-            titleField = alertTextField
-        }
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Year"
-            yearField = alertTextField
-        }
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Console"
-            consoleField = alertTextField
-        }
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Completed"
-            completedField = alertTextField
-        }
-        alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Date of Completion"
-            dateOfCompletionField = alertTextField
-        }
-        
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func saveGames() {
-        
-        do {
-            try context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-        
-        tableView.reloadData()
-    }
-    
     func loadGames(with request: NSFetchRequest<Game> = Game.fetchRequest()){
         
         do {
