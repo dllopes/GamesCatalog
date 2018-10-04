@@ -11,7 +11,7 @@ import CoreData
 
 class GameListViewController: UITableViewController {
 
-    var itemArray = [Game]()
+    var gamesArray = [Game]()
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Game.plist")
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -27,24 +27,24 @@ class GameListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray.count
+        return gamesArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameListCell", for: indexPath)
     
-        let item = itemArray[indexPath.row]
+        let game = gamesArray[indexPath.row]
         
-        cell.textLabel?.text = itemArray[indexPath.row].title
+        cell.textLabel?.text = game.title
         
-        cell.accessoryType = item.completed ? .checkmark : .none
+        cell.accessoryType = game.completed ? .checkmark : .none
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        itemArray[indexPath.row].completed = !itemArray[indexPath.row].completed
+        gamesArray[indexPath.row].completed = !gamesArray[indexPath.row].completed
         
         tableView.reloadData()
         
@@ -54,7 +54,7 @@ class GameListViewController: UITableViewController {
     func loadGames(with request: NSFetchRequest<Game> = Game.fetchRequest()){
         
         do {
-            itemArray = try context.fetch(request)
+            gamesArray = try context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
