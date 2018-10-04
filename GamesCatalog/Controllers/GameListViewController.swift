@@ -37,14 +37,14 @@ class GameListViewController: UITableViewController {
         
         cell.textLabel?.text = itemArray[indexPath.row].title
         
-        cell.accessoryType = item.done ? .checkmark : .none
+        cell.accessoryType = item.completed ? .checkmark : .none
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        itemArray[indexPath.row].completed = !itemArray[indexPath.row].completed
         
         tableView.reloadData()
         
