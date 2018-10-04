@@ -24,6 +24,7 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         // Connect data:
         self.consoleTextField.delegate = self
@@ -54,6 +55,8 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
             print("Error saving context \(error)")
         }
         
+        _ = navigationController?.popToRootViewController(animated: true)
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -73,4 +76,16 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
         print("Teste")
     }
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
