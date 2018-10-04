@@ -12,6 +12,7 @@ import CoreData
 class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var gamesArray = [Game]()
+    var consolePickerText = ""
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var titleTextField: UITextField!
@@ -39,6 +40,7 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
         let newGame = Game(context: self.context)
         newGame.title = titleTextField.text!
         newGame.year = Int16(yearTextField.text!)!
+        newGame.console = consolePickerText
         newGame.completed = completedBoolField.isOn
         newGame.date_of_completion = dateOfCompletionDateField.date
 
@@ -73,7 +75,7 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     // Catpure the picker view selection
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("Teste")
+        consolePickerText = pickerData[row] as String
     }
 
 }
