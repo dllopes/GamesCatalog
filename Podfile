@@ -6,7 +6,7 @@ target 'GamesCatalog' do
   use_frameworks!
 
   # Pods for GamesCatalog
-  pod 'ActionSheetPicker-3.0', '~> 2.3.0'
+#  pod 'ActionSheetPicker-3.0', '~> 2.3.0'
 
   target 'GamesCatalogTests' do
     inherit! :search_paths
