@@ -27,8 +27,8 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
-        dateOfCompletionDateField.minimumDate = Calendar.current.date(byAdding: .year, value: -50, to: Date())
-        dateOfCompletionDateField.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
+        setMinAndMaxDate()
+        
         // Connect data:
         self.consoleTextField.delegate = self
         self.consoleTextField.dataSource = self
@@ -78,6 +78,11 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
     // Catpure the picker view selection
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         consolePickerText = pickerData[row] as String
+    }
+    
+    func setMinAndMaxDate(){
+        dateOfCompletionDateField.minimumDate = Calendar.current.date(byAdding: .year, value: -50, to: Date())
+        dateOfCompletionDateField.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
     }
 
 }
