@@ -27,6 +27,8 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
+        dateOfCompletionDateField.minimumDate = Calendar.current.date(byAdding: .year, value: -50, to: Date())
+        dateOfCompletionDateField.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
         // Connect data:
         self.consoleTextField.delegate = self
         self.consoleTextField.dataSource = self
