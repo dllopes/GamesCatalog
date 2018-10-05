@@ -75,7 +75,7 @@ class GameListViewController: UITableViewController {
         let calendar = Calendar.current
         let year = calendar.component(.year, from: date)
         let yearsOld = year - Int(game.year)
-        let yearsOldString = yearsOld == 0 ? "Game of year" : "\(yearsOld) years old"
+        let yearsOldString = yearsOld == 0 ? "Recently released" : "\(yearsOld) years old"
         
         return yearsOldString
     }
