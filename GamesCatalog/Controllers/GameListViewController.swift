@@ -35,7 +35,7 @@ class GameListViewController: UITableViewController {
         let game = gamesArray[indexPath.row]
         
         cell.textLabel?.text = game.title
-        cell.detailTextLabel?.text = "\(formatDate(currentDate: game.date_of_completion!)) | Year: \(String(game.year)) | \(game.console!)"
+        cell.detailTextLabel?.text = "\(formatDate(currentDate: game.date_of_completion!)) | \(gameYearsOld(game: game)) | \(game.console!)"
         cell.accessoryType = game.completed ? .checkmark : .none
         
         return cell
@@ -68,6 +68,16 @@ class GameListViewController: UITableViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MMM-dd"
         return formatter.string(from: currentDate)
+    }
+    
+    func gameYearsOld(game: Game) -> String {
+        let date = Date()
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date)
+        let yearsOld = year - Int(game.year)
+        let yearsOldString = yearsOld == 0 ? "Game of year" : "\(yearsOld) years old"
+        
+        return yearsOldString
     }
 }
 
