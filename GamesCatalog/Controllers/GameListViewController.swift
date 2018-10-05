@@ -17,7 +17,6 @@ class GameListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadGames()
     }
     
@@ -32,11 +31,11 @@ class GameListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameListCell", for: indexPath)
-    
+        
         let game = gamesArray[indexPath.row]
         
         cell.textLabel?.text = game.title
-        
+        cell.detailTextLabel?.text = "\(formatDate(currentDate: game.date_of_completion!)) - \(String(game.year)) - \(game.console!)"
         cell.accessoryType = game.completed ? .checkmark : .none
         
         return cell
@@ -63,6 +62,12 @@ class GameListViewController: UITableViewController {
         
         tableView.reloadData()
         
+    }
+    
+    func formatDate(currentDate: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MMM-yyyy"
+        return formatter.string(from: currentDate)
     }
 }
 
