@@ -35,7 +35,7 @@ class GameListViewController: UITableViewController {
         let game = gamesArray[indexPath.row]
         
         cell.textLabel?.text = game.title
-        cell.detailTextLabel?.text = "\(formatDate(currentDate: game.date_of_completion!)) - \(game.console!) - Year: \(String(game.year))"
+        cell.detailTextLabel?.text = "\(formatDate(currentDate: game.date_of_completion!)) | Year: \(String(game.year)) | \(game.console!)"
         cell.accessoryType = game.completed ? .checkmark : .none
         
         return cell
