@@ -21,6 +21,7 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var completedBoolField: UISwitch!
     @IBOutlet weak var dateOfCompletionDateField: UIDatePicker!
     
+    
     var pickerData: [String] = [String]()
     
     override func viewDidLoad() {
@@ -33,7 +34,7 @@ class GameCreateViewController: UIViewController, UIPickerViewDelegate, UIPicker
         self.consoleTextField.delegate = self
         self.consoleTextField.dataSource = self
         
-        pickerData = ["Playstation 1", "Playstation 2", "Playstation 3", "Xbox ONE", "Xbox 1", "Xbox Classic", "Console 6", "Console 7"]
+        pickerData = [" - ", "Playstation 1", "Playstation 2", "Playstation 3", "Xbox ONE", "Xbox 1", "Xbox Classic", "Console 6", "Console 7"]
     }
     
 
