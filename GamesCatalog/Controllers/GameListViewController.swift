@@ -53,6 +53,8 @@ class GameListViewController: UITableViewController {
     
     func loadGames(with request: NSFetchRequest<Game> = Game.fetchRequest()){
         
+        request.sortDescriptors = [NSSortDescriptor(key: "date_of_completion", ascending: false)]
+        
         do {
             gamesArray = try context.fetch(request)
         } catch {
@@ -74,8 +76,6 @@ extension GameListViewController: UISearchBarDelegate {
         let predicate1 = NSPredicate(format: "title contains[c] %@", searchBar.text!)
         let predicate2 = NSPredicate(format: "console contains[c] %@", searchBar.text!)
         request.predicate = NSCompoundPredicate.init(type: .or, subpredicates: [predicate1,predicate2])
-        
-        request.sortDescriptors = [NSSortDescriptor(key: "date_of_completion", ascending: false)]
         
         loadGames(with: request)
     }
